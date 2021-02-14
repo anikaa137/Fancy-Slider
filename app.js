@@ -4,9 +4,9 @@ const galleryHeader = document.querySelector('.gallery-header');
 const searchBtn = document.getElementById('search-btn');
 const sliderBtn = document.getElementById('create-slider');
 const sliderContainer = document.getElementById('sliders');
+
 // selected image 
 let sliders = [];
-
 
 // If this key doesn't work
 // Find the name in the url and go to their website
@@ -29,16 +29,15 @@ const showImages = (images) => {
   })
   toggleLoading()
 }
-
 const getImages = (query) => {
   toggleLoading()
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())
     .then(data => showImages(data.hits))
-    .catch(err => (err ))
+    .catch(err => alert ('Something went wrong!!! Please try again letter..'))
    
 }
-
+// add data loading
 const toggleLoading = () => {
   const loading = document.getElementById('loading-btn');
   loading.classList.toggle('d-none');
@@ -56,11 +55,6 @@ const selectItem = (event, img) => {
     element.classList.toggle ('added');
   }
 }
-let calculateTarger = ()=>{
-  let calculate = document.getElementById("img-counter")
-  
-}
-
 var timer
 const createSlider = (time) => {
   // check slider image length
@@ -138,19 +132,16 @@ sliderBtn.addEventListener('click', function () {
   if(duration >= 1000){
     createSlider(duration)
   }else{
-    alert("no")
+    alert("Please give positive value")
   }
   
 })
-
+// enterPress
 document.getElementById("search").addEventListener('keypress',function(searchImg) {
   if (searchImg.key == 'Enter'){
         searchBtn.click();
   }
 })
-
-
-
 
 
 
