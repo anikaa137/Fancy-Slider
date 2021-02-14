@@ -35,7 +35,7 @@ const getImages = (query) => {
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())
     .then(data => showImages(data.hits))
-    .catch(err => console.log(err))
+    .catch(err => (err ))
    
 }
 
@@ -62,7 +62,7 @@ let calculateTarger = ()=>{
 }
 
 var timer
-const createSlider = () => {
+const createSlider = (time) => {
   // check slider image length
   if (sliders.length < 2) {
     alert('Select at least 2 image.')
@@ -81,7 +81,7 @@ const createSlider = () => {
   document.querySelector('.main').style.display = 'block';
   // hide image aria
   imagesArea.style.display = 'none';
-  const duration = document.getElementById('sliders').value || 1000;
+  // const duration = document.getElementById('duration').value || 1000;
   sliders.forEach(slide => {
     let item = document.createElement('div')
     item.className = "slider-item";
@@ -94,7 +94,7 @@ const createSlider = () => {
   timer = setInterval(function () {
     slideIndex++;
     changeSlide(slideIndex);
-  }, duration);
+  }, time);
 }
 
 // change slider index 
@@ -133,7 +133,14 @@ searchBtn.addEventListener('click', function () {
 })
 
 sliderBtn.addEventListener('click', function () {
-  createSlider()
+  const duration = document.getElementById('duration').value || 1000;
+  console.log(duration)
+  if(duration >= 1000){
+    createSlider(duration)
+  }else{
+    alert("no")
+  }
+  
 })
 
 document.getElementById("search").addEventListener('keypress',function(searchImg) {
@@ -141,3 +148,15 @@ document.getElementById("search").addEventListener('keypress',function(searchImg
         searchBtn.click();
   }
 })
+
+
+
+
+
+
+
+
+
+
+
+
