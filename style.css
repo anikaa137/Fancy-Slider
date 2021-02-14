@@ -27,7 +27,13 @@ img {
   height: 400px;
   object-fit: cover;
 }
-
+#like-icon{
+  color: red;
+  border-radius: 10px;
+  border: none;
+  background: none;
+  
+}
 .prev-next {
   position: absolute;
   top: 50%;
